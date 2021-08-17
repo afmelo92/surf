@@ -1,6 +1,7 @@
 import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
+
 import { ForecastController } from './controllers/forecast';
 
 export class SetupServer extends Server {

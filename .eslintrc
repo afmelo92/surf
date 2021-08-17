@@ -3,7 +3,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "eslint-plugin-import-helpers"
   ],
   "extends": [
     "prettier",
@@ -12,7 +13,19 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import-helpers/order-imports": [
+      "warn",
+      { // example configuration
+          "newlinesBetween": "always",
+          "groups": [
+              "module",
+              "/^@shared/",
+              ["parent", "sibling", "index"],
+          ],
+          "alphabetize": { "order": "asc", "ignoreCase": true }
+      },
+  ],
   }
   
 }
