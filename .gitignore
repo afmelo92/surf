@@ -76,7 +76,6 @@ web_modules/
 
 # node config
 config/default.json
-config/ninja.json
 
 
 # parcel-bundler cache (https://parceljs.org/)
