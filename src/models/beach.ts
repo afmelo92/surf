@@ -1,4 +1,8 @@
-import mongoose, { Document as MongooseDocument, Model } from 'mongoose';
+import mongoose, {
+  Document as MongooseDocument,
+  Model,
+  Schema,
+} from 'mongoose';
 
 export enum BeachPosition {
   S = 'S',
@@ -21,6 +25,7 @@ const schema = new mongoose.Schema(
     lng: { type: Number, required: true },
     name: { type: String, required: true },
     position: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   {
     toJSON: {
