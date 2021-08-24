@@ -5,11 +5,13 @@ import { Beach } from '@src/models/beach';
 import { Forecast } from '@src/services/forecast';
 import { Request, Response } from 'express';
 
+import { BaseController } from '.';
+
 const forecast = new Forecast();
 
 @Controller('forecast')
 @ClassMiddleware(authMiddleware)
-export class ForecastController {
+export class ForecastController extends BaseController {
   @Get('')
   public async getForecastForLoggedUser(
     req: Request,
@@ -23,7 +25,10 @@ export class ForecastController {
       res.status(200).send(forecastData);
     } catch (err: unknown) {
       logger.error(err as Error);
-      res.status(500).send({ error: 'Something went wrong' });
+      this.sendErrorResponse(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
   }
 }
