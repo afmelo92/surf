@@ -5,7 +5,7 @@
   "author": "Andre <andre.fabian.melo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev 'src/index.ts'",
+    "dev": "ts-node-dev --files 'src/index.ts' | pino-pretty -c",
     "build": "tsc",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
@@ -27,6 +27,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/nock": "^11.1.0",
     "@types/node": "^16.6.1",
+    "@types/pino": "^6.3.11",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
@@ -36,6 +37,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "nock": "^13.1.2",
+    "pino-pretty": "^6.0.0",
     "prettier": "^2.3.2",
     "supertest": "^6.1.5",
     "ts-jest": "^27.0.4",
@@ -50,6 +52,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.13.7"
+    "mongoose": "^5.13.7",
+    "pino": "^6.13.1"
   }
 }
