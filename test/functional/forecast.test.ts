@@ -1,24 +1,22 @@
 import { Beach, GeoPosition } from '@src/models/beach';
 import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
-import apiForecastResponse1BeachFixture from '@test/fixtures/api_forecast_response_1_beach.json';
-import stormGlassWeather3hoursFixture from '@test/fixtures/stormglass_weather_3_hours.json';
 import nock from 'nock';
 
+import apiForecastResponse1BeachFixture from '../fixtures/api_forecast_response_1_beach.json';
+import stormGlassWeather3HoursFixture from '../fixtures/stormglass_weather_3_hours.json';
+
 describe('Beach forecast functional tests', () => {
-  const defaultUser = {
+  const defaultUser: User = {
     name: 'John Doe',
-    email: 'john@mail.com',
+    email: 'john3@mail.com',
     password: '1234',
   };
-
   let token: string;
-
   beforeEach(async () => {
     await Beach.deleteMany({});
     await User.deleteMany({});
     const user = await new User(defaultUser).save();
-
     const defaultBeach = {
       lat: -33.792726,
       lng: 151.289824,
@@ -26,11 +24,9 @@ describe('Beach forecast functional tests', () => {
       position: GeoPosition.E,
       user: user.id,
     };
-
     await new Beach(defaultBeach).save();
     token = AuthService.generateToken(user.toJSON());
   });
-
   it('should return a forecast with just a few times', async () => {
     nock('https://api.stormglass.io:443', {
       encodedQueryParams: true,
@@ -46,14 +42,13 @@ describe('Beach forecast functional tests', () => {
         params: /(.*)/,
         source: 'noaa',
       })
-      .reply(200, stormGlassWeather3hoursFixture);
+      .reply(200, stormGlassWeather3HoursFixture);
 
     const { body, status } = await global.testRequest
       .get('/forecast')
       .set({ 'x-access-token': token });
-
     expect(status).toBe(200);
-
+    // Make sure we use toEqual to check value not the object and array itself
     expect(body).toEqual(apiForecastResponse1BeachFixture);
   });
 
@@ -65,15 +60,12 @@ describe('Beach forecast functional tests', () => {
       },
     })
       .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
-      .get('/v2/weather/point')
-      .query({
-        lat: '-33.792726',
-        lng: '151.289824',
-      })
+      .get('/v1/weather/point')
+      .query({ lat: '-33.792726', lng: '151.289824' })
       .replyWithError('Something went wrong');
 
     const { status } = await global.testRequest
-      .get('/forecast')
+      .get(`/forecast`)
       .set({ 'x-access-token': token });
 
     expect(status).toBe(500);
