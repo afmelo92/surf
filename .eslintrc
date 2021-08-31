@@ -6,6 +6,9 @@
     "prettier",
     "eslint-plugin-import-helpers"
   ],
+  "env": {
+    "jest": true
+  },
   "extends": [
     "prettier",
     "eslint:recommended",

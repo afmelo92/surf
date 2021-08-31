@@ -1,0 +1,74 @@
+# SURF API
+
+Surf API is a nodejs/typescript project that gives you the best beaches for surfing.
+
+# Description
+
+With Surf API you can register yourself and then register your favorite beach locations to get the ranked list of them and the best surfing situation.
+
+## Built With
+
+ - NodeJS 
+ - Express
+ - Typescript
+ - Mongoose
+
+## Switch to another file
+
+All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+Install a mongodb docker image and start the container with the command below:
+
+``$ docker run -d --name surf-api -p 27017:27017 mongo``
+
+with this command there are no password or user login to access the database.
+
+You have to get an stormglass weather api account:
+[stormglass.io](https://stormglass.io/)
+
+Once you have registered, be sure that you have and api token to make requests properly.
+
+### Installation
+
+ 1. Clone the repo
+`git clone https://github.com/afmelo92/surf.git`
+ 2. Set apiToken environment variable
+`(config folder > default-example.json file) with stormglass token`
+ 3. Install packages
+`yarn`
+ 4. Test
+`yarn test`
+ 5. Run
+`yarn dev`
+
+
+## Usage
+
+
+You can have a detailed documentation about the API if you access the endpoint below:
+
+`localhost:3000/docs`
+
+The swagger documentation will lead the way through the possibilities.
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+I personally recommend that you contribute with the original project [here](https://github.com/waldemarnt/node-typescript-api)
+
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
+
